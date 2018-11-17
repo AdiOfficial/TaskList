@@ -2,9 +2,12 @@ package ws.tilda.anastasia.tasklist
 
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.InputType
+import android.widget.EditText
 
 class ListDetailActivity : AppCompatActivity() {
     lateinit var list: TaskList
@@ -27,6 +30,16 @@ class ListDetailActivity : AppCompatActivity() {
     }
 
     private fun showCreateTaskDialog() {
-
+        val taskEditText = EditText(this)
+        taskEditText.inputType = InputType.TYPE_CLASS_TEXT
+        AlertDialog.Builder(this).setTitle(R.string.task_to_add)
+            .setView(taskEditText)
+            .setPositiveButton(R.string.add_task) { dialog, i ->
+                val task = taskEditText.text.toString()
+                list.tasks.add(task)
+                val recyclerAdapter = listItemsRecyclerView.adapter as ListItemsRecyclerViewAdapter
+                recyclerAdapter.notifyItemInserted(list.tasks.size)
+                dialog.dismiss()
+            }.create().show()
     }
 }
