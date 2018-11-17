@@ -58,6 +58,8 @@ class MainActivity : AppCompatActivity() {
         builder.setPositiveButton(positiveButtonTitle) { dialog, i ->
             val list = TaskList(listTitleEditText.text.toString())
             listDataManager.saveList(list)
+            val recyclerAdapter = listsRecyclerView.adapter as ListSelectionRecyclerViewAdapter
+            recyclerAdapter.addList(list)
             dialog.dismiss()
         }
         builder.create().show()
