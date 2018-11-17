@@ -1,5 +1,7 @@
 package ws.tilda.anastasia.tasklist
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
@@ -41,5 +43,15 @@ class ListDetailActivity : AppCompatActivity() {
                 recyclerAdapter.notifyItemInserted(list.tasks.size)
                 dialog.dismiss()
             }.create().show()
+    }
+
+    //When the user taps the BACK button
+    override fun onBackPressed() {
+        val bundle = Bundle() //we create the bundle
+        bundle.putParcelable(MainActivity.INTENT_LIST_KEY, list) //and put our list inside of it as Parcelable
+        val intent = Intent()
+        intent.putExtras(bundle)
+        setResult(Activity.RESULT_OK, intent) // we send the result with the bundle to MainActivity (to onActivityResult()) notifying that everything is ok.
+        super.onBackPressed()
     }
 }
