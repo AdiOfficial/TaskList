@@ -12,7 +12,9 @@ import android.view.MenuItem
 import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ListSelectionRecyclerViewAdapter.ListSelectionRecyclerViewClickListener {
+
+
     companion object {
         val INTENT_LIST_KEY = "list"
     }
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val lists = listDataManager.readLists()
         listsRecyclerView = this.findViewById(R.id.list_recyclerview)
         listsRecyclerView.layoutManager = LinearLayoutManager(this)
-        listsRecyclerView.adapter = ListSelectionRecyclerViewAdapter(lists)
+        listsRecyclerView.adapter = ListSelectionRecyclerViewAdapter(lists, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -75,5 +77,9 @@ class MainActivity : AppCompatActivity() {
         val listDetailIntent = Intent(this, ListDetailActivity::class.java)
         listDetailIntent.putExtra(INTENT_LIST_KEY, list)
         startActivity(listDetailIntent)
+    }
+
+    override fun listItemCliecked(list: TaskList) {
+        showListDetail(list)
     }
 }
