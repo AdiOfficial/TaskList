@@ -17,5 +17,6 @@ class ListDetailActivity : AppCompatActivity() {
 
         listItemsRecyclerView = findViewById(R.id.list_items_recyclerview)
         listItemsRecyclerView.layoutManager = LinearLayoutManager(this)
+        listItemsRecyclerView.adapter = ListItemRecyclerViewAdapter(list)
     }
 }
