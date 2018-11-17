@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             val recyclerAdapter = listsRecyclerView.adapter as ListSelectionRecyclerViewAdapter
             recyclerAdapter.addList(list)
             dialog.dismiss()
+            showListDetail(list)
         }
         builder.create().show()
     }
