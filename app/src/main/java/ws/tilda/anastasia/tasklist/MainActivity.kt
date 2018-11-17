@@ -25,9 +25,10 @@ class MainActivity : AppCompatActivity() {
             showCreateListDialog()
         }
 
+        val lists = listDataManager.readLists()
         listsRecyclerView = this.findViewById(R.id.list_recyclerview)
         listsRecyclerView.layoutManager = LinearLayoutManager(this)
-        listsRecyclerView.adapter = ListSelectionRecyclerViewAdapter()
+        listsRecyclerView.adapter = ListSelectionRecyclerViewAdapter(lists)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
