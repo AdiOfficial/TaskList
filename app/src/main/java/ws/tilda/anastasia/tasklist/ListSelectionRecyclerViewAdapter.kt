@@ -4,8 +4,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class ListSelectionRecyclerViewAdapter(val lists: ArrayList<TaskList>) :
+class ListSelectionRecyclerViewAdapter(val lists: ArrayList<TaskList>, val clickListener: ListSelectionRecyclerViewClickListener) :
     RecyclerView.Adapter<ListSelectionViewHolder>() {
+
+    interface ListSelectionRecyclerViewClickListener {
+        fun listItemCliecked(list: TaskList)
+    }
 
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ListSelectionViewHolder {
@@ -21,6 +25,8 @@ class ListSelectionRecyclerViewAdapter(val lists: ArrayList<TaskList>) :
         if (holder != null) {
             holder.listPosition.text = (position + 1).toString()
             holder.listTitle.text = lists.get(position).name
+            holder.itemView.setOnClickListener {
+                clickListener.listItemCliecked(lists.get(position))}
         }
     }
 
