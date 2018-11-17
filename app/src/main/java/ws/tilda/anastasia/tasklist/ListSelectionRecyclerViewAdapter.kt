@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 
 class ListSelectionRecyclerViewAdapter() : RecyclerView.Adapter<ListSelectionViewHolder>() {
-    val listOfTitles = arrayOf("Shoppint List", "Chores", "Android Tutorials")
+    val listOfTitles = arrayOf("Shopping List", "Chores", "Android Tutorials")
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ListSelectionViewHolder {
-        val view = LayoutInflater.from(p0?.context).inflate(R.layout.list_selection_view_holder, p0, false)
+        val view = LayoutInflater.from(p0.context).inflate(R.layout.list_selection_view_holder, p0, false)
         return ListSelectionViewHolder(view)
     }
 
@@ -16,7 +16,10 @@ class ListSelectionRecyclerViewAdapter() : RecyclerView.Adapter<ListSelectionVie
         return listOfTitles.size
     }
 
-    override fun onBindViewHolder(p0: ListSelectionViewHolder, p1: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onBindViewHolder(holder: ListSelectionViewHolder, position: Int) {
+        if (holder != null) {
+            holder.listPosition.text = (position + 1).toString()
+            holder.listTitle.text = listOfTitles[position]
+        }
     }
 }
