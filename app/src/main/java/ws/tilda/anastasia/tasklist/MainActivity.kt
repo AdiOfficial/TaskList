@@ -1,5 +1,6 @@
 package ws.tilda.anastasia.tasklist
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -12,6 +13,9 @@ import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        val INTENT_LIST_KEY = "list"
+    }
 
     lateinit var listsRecyclerView: RecyclerView
     val listDataManager: ListDataManager = ListDataManager(this)
@@ -64,7 +68,11 @@ class MainActivity : AppCompatActivity() {
             dialog.dismiss()
         }
         builder.create().show()
+    }
 
-
+    private fun showListDetail(list: TaskList) {
+        val listDetailIntent = Intent(this, ListDetailActivity::class.java)
+        listDetailIntent.putExtra(INTENT_LIST_KEY, list)
+        startActivity(listDetailIntent)
     }
 }
