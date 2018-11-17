@@ -22,11 +22,10 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            showCreateListDialog()
         }
 
-        listsRecyclerView = findViewById(R.id.list_recyclerview)
+        listsRecyclerView = this.findViewById(R.id.list_recyclerview)
         listsRecyclerView.layoutManager = LinearLayoutManager(this)
         listsRecyclerView.adapter = ListSelectionRecyclerViewAdapter()
     }
