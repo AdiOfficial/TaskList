@@ -56,6 +56,8 @@ class MainActivity : AppCompatActivity() {
         builder.setTitle(dialogTitle)
         builder.setView(listTitleEditText)
         builder.setPositiveButton(positiveButtonTitle) { dialog, i ->
+            val list = TaskList(listTitleEditText.text.toString())
+            listDataManager.saveList(list)
             dialog.dismiss()
         }
         builder.create().show()
